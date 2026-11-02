@@ -14,10 +14,10 @@ const currencyShort=n=>formatToman(n);
 const pRate=n=>(n*100).toLocaleString('fa-IR',{maximumFractionDigits:2})+'٪';
 const escapeHTML=str=>String(str).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
 
-// Dark is always the first-visit default; a user's explicit toggle is remembered.
+// Light is the first-visit default; a user's explicit toggle is remembered.
 let savedTheme=null;
 try{savedTheme=localStorage.getItem('startechno-theme')}catch{}
-setTheme(savedTheme==='light'?'light':'dark',false);
+setTheme(savedTheme==='dark'?'dark':'light',false);
 function setTheme(theme,persist=true){
   document.documentElement.dataset.theme=theme;
   $('theme-label').textContent=theme==='dark'?'حالت روشن':'حالت تاریک';
