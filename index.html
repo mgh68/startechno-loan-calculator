@@ -13,7 +13,7 @@
   <div class="ambient ambient-two" aria-hidden="true"></div>
   <main class="site-wrap" id="top">
     <header class="header">
-      <div class="identity"><span class="brand-icon" aria-hidden="true">✦</span><span class="brand-word">STARTECHNO <small>FINANCE TOOLS</small></span></div>
+      <div class="identity"><img class="brand-logo" src="./assets/startechno.webp" alt="" loading="eager"><span class="brand-word">STARTECHNO <small>FINANCE TOOLS</small><a class="brand-website" href="https://startechno.ir/" target="_blank" rel="noopener noreferrer" dir="ltr">startechno.ir</a></span></div>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="تغییر به حالت روشن" title="تغییر رنگ صفحه">
         <svg class="light-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42m0-14.14-1.42 1.42M6.35 17.65l-1.42 1.42"/></svg>
         <svg class="dark-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
@@ -24,13 +24,14 @@
     <section class="intro" aria-labelledby="page-heading">
       <div class="eyebrow"><span class="eyebrow-dot"></span> خرید هوشمند · مقایسه شفاف</div>
       <h1 id="page-heading">محاسبه‌گر <span>طرح‌های اقساطی</span> استارتکنو</h1>
-      <p>بررسی و مقایسه شرایط خرید اقساطی <strong>(حضوری و سایت)</strong> با نمایش مبلغ نقدی اولیه، سود بانکی و اقساط هر طرح.</p>
+      <p class="store-tagline">فروش نقد و اقساط انواع گوشی، لپ‌تاپ، کنسول و لوازم جانبی از فروشگاه حضوری و سایت استارتکنو</p>
+      <p class="intro-support">بررسی و مقایسه شرایط خرید اقساطی <strong>(حضوری و سایت)</strong> با نمایش مبلغ نقدی اولیه، سود بانکی و اقساط هر طرح.</p>
     </section>
 
     <section aria-label="معرفی شرکت‌های ارائه‌دهنده اعتبار" class="providers">
-      <button class="provider-button" type="button" data-info="gsm"><span class="provider-mark gsm">G</span><span class="provider-copy"><strong>GSMPAY</strong><small>تا ۲۰۰ میلیون · ۱۲ و ۲۴ ماه</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
-      <button class="provider-button" type="button" data-info="digi"><span class="provider-mark digi">D</span><span class="provider-copy"><strong>دیجی‌پی</strong><small>اعتبار ثابت · ۱۲ ماه + BNPL</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
-      <button class="provider-button" type="button" data-info="azki"><span class="provider-mark azki">A</span><span class="provider-copy"><strong>ازکی‌وام</strong><small>تا ۳۰۰ میلیون · ۶ تا ۲۴ ماه</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
+      <button class="provider-button" type="button" data-info="gsm"><span class="provider-mark gsm"><img src="./assets/gsmpay.webp" alt="" loading="eager"></span><span class="provider-copy"><strong>GSMPAY</strong><small>تا ۲۰۰٬۰۰۰٬۰۰۰ تومان · ۱۲ و ۲۴ ماه</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
+      <button class="provider-button" type="button" data-info="digi"><span class="provider-mark digi"><img src="./assets/digipay.webp" alt="" loading="eager"></span><span class="provider-copy"><strong>دیجی‌پی</strong><small>اعتبار ثابت · ۱۲ ماه + BNPL</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
+      <button class="provider-button" type="button" data-info="azki"><span class="provider-mark azki"><img src="./assets/azkivam.webp" alt="" loading="eager"></span><span class="provider-copy"><strong>ازکی‌وام</strong><small>تا ۳۰۰٬۰۰۰٬۰۰۰ تومان · ۶ تا ۲۴ ماه</small></span><span class="provider-arrow" aria-hidden="true">↗</span></button>
     </section>
     <p class="providers-hint">برای مشاهده شرایط، مدارک و بانک‌ها روی نام هر شرکت بزنید.</p>
 
@@ -38,7 +39,7 @@
       <div class="panel-heading"><div><span class="section-kicker">محاسبه آنلاین</span><h2 id="calc-heading">مبلغ خرید و تنظیمات</h2></div><span class="realtime-pill"><span></span> نتیجه خودکار</span></div>
       <form id="calculator-form" autocomplete="off" novalidate>
         <div class="form-grid">
-          <div class="field"><label for="invoice">قیمت فاکتور <em>الزامی</em></label><div class="input-wrap"><input type="text" id="invoice" inputmode="numeric" placeholder="مثلاً ۱۲۰,۰۰۰,۰۰۰" aria-describedby="invoice-help"><span>تومان</span></div><p class="field-note" id="invoice-help">مبنای محاسبه اختلاف نقد و اقساط همه شرکت‌ها</p></div>
+          <div class="field"><label for="invoice">قیمت فاکتور <em>الزامی</em></label><div class="input-wrap"><input type="text" id="invoice" inputmode="numeric" placeholder="مثلاً ۱۲۰٬۰۰۰٬۰۰۰" aria-describedby="invoice-help"><span>تومان</span></div><p class="field-note" id="invoice-help">مبنای محاسبه اختلاف نقد و اقساط همه شرکت‌ها</p></div>
           <div class="field"><label for="custom-credit">مبلغ اعتبار دلخواه <em class="optional">اختیاری</em></label><div class="input-wrap"><input type="text" id="custom-credit" inputmode="numeric" placeholder="خالی = پیشنهاد خودکار"><span>تومان</span></div><p class="field-note">با درج اعتبار، فقط همین رقم در طرح‌های مجاز بررسی می‌شود.</p></div>
           <div class="field"><label for="rounding">گام گرد کردن رو به پایین</label><div class="input-wrap"><input type="text" id="rounding" inputmode="decimal" value="10"><span>میلیون تومان</span></div><p class="field-note">پیش‌فرض ۱۰ میلیون؛ مخصوص پیشنهادهای خودکار</p></div>
           <div class="field"><label for="months">مدت بازپرداخت</label><div class="input-wrap select-wrap"><select id="months"><option value="all">تمام دوره‌ها (پیش‌فرض)</option><option value="6">۶ ماهه</option><option value="12">۱۲ ماهه</option><option value="18">۱۸ ماهه</option><option value="24">۲۴ ماهه</option></select><span class="select-chev" aria-hidden="true">⌄</span></div><p class="field-note">در حالت پیش‌فرض تمامی طرح‌های مجاز نمایش داده می‌شوند.</p></div>
@@ -53,7 +54,7 @@
       <div class="results-heading"><div><span class="section-kicker">مقایسه پیشنهادها</span><h2 id="results-heading">نتایج محاسبه</h2><p id="results-subtitle">برای شروع، قیمت فاکتور را وارد کنید.</p></div><span id="results-count" class="counter hidden"></span></div>
       <div id="results-info" class="notices" aria-live="polite"></div>
       <div class="filter-bar" id="filters" aria-label="فیلتر شرکت‌ها" hidden><button class="filter active" data-company="all" type="button">همه طرح‌ها <span id="count-all"></span></button><button class="filter" data-company="gsm" type="button">GSMPAY <span id="count-gsm"></span></button><button class="filter" data-company="digi" type="button">دیجی‌پی <span id="count-digi"></span></button><button class="filter" data-company="azki" type="button">ازکی‌وام <span id="count-azki"></span></button></div>
-      <div id="results-content" class="results-content"><div class="empty-state"><div class="empty-shape">٪</div><h3>آماده محاسبه هستیم!</h3><p>مبلغ فاکتور را در کادر بالا وارد کنید تا پیشنهادهای اعتباری هر سه شرکت با جزئیات اقساط نمایش داده شوند.</p><button class="link-button" type="button" id="example-button">مشاهده نمونه برای فاکتور ۱۲۰ میلیون تومانی ←</button></div></div>
+      <div id="results-content" class="results-content"><div class="empty-state"><div class="empty-shape">٪</div><h3>آماده محاسبه هستیم!</h3><p>مبلغ فاکتور را در کادر بالا وارد کنید تا پیشنهادهای اعتباری هر سه شرکت با جزئیات اقساط نمایش داده شوند.</p><button class="link-button" type="button" id="example-button">مشاهده نمونه برای فاکتور ۱۲۰٬۰۰۰٬۰۰۰ تومانی ←</button></div></div>
     </section>
 
     <footer class="footer"><p>تمام ارقام به تومان و محاسبات اقساط با فرض اقساط مساوی و نرخ سود بانکی سالانه ۲۳٪ انجام می‌شوند. نتایج تقریبی‌اند و تأیید نهایی تسهیلات، مدارک و مبالغ تابع قرارداد و اعتبارسنجی ارائه‌دهنده است.</p><span>STARTECHNO · INSTALLMENT CALCULATOR</span></footer>

@@ -10,7 +10,7 @@ let companyFilter='all';
 
 const PERSIAN_DIGITS='۰۱۲۳۴۵۶۷۸۹';
 const faNum=n=>Number(n).toLocaleString('fa-IR');
-const currencyShort=n=>formatMillion(n,2)+' تومان';
+const currencyShort=n=>formatToman(n);
 const pRate=n=>(n*100).toLocaleString('fa-IR',{maximumFractionDigits:2})+'٪';
 const escapeHTML=str=>String(str).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
 
@@ -28,9 +28,9 @@ function setTheme(theme,persist=true){
 $('theme-toggle').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
 
 const INFO={
-  gsm:`<h3>طرح‌های GSMPAY</h3><table><thead><tr><th>بانک</th><th>سقف اعتبار</th><th>بازپرداخت</th></tr></thead><tbody><tr><td>بلوبانک</td><td>۱۰۰ میلیون تومان</td><td>۱۲ ماه</td></tr><tr><td>های‌بانک</td><td>۲۰۰ میلیون تومان</td><td>۲۴ ماه</td></tr></tbody></table><p>سود سالانه بانکی: <b>۲۳٪</b>؛ کارمزد ارائه اعتبار: <b>۱۴.۵٪ اعتبار</b>؛ اختلاف خرید نقد و اقساط: <b>۳٪ کل فاکتور</b>.</p><h3>شرایط و مدارک</h3><ul><li>رتبه اعتباری بانکی موردنیاز</li><li>یک فقره چک ضمانت صیادی بنفش به نام خود متقاضی</li></ul><p class="note">کارمزد ارائه اعتبار به‌صورت نقدی و پیش از خرید پرداخت می‌شود؛ اعتبار بانکی به همان مبلغ اسمی باقی می‌ماند. مبلغ نقدی لازم برای پوشش اختلاف فاکتور و هزینه‌ها در نتیجه جداگانه نمایش داده می‌شود.</p>`,
-  digi:`<h3>طرح‌های ۱۲ ماهه دیجی‌پی</h3><table><thead><tr><th>اعتبار ثابت</th><th>بانک</th></tr></thead><tbody><tr><td>۷۰ میلیون تومان</td><td>صادرات یا ملت</td></tr><tr><td>۱۰۰ میلیون تومان</td><td>صادرات یا ملت</td></tr><tr><td>۱۵۰ میلیون تومان</td><td>ملت</td></tr><tr><td>۲۰۰ میلیون تومان</td><td>ملت</td></tr></tbody></table><p>سود بانکی: <b>۲۳٪ سالانه</b>؛ <b>هزینه تهیه اشتراک دیجی‌پی ۱۴.۵٪ اعتبار</b>؛ اختلاف خرید نقد و اقساط: <b>۹٪ کل فاکتور</b>.</p><h3>روش دریافت اشتراک و مدارک</h3><ul><li>هزینه اشتراک: پرداخت نقدی یا کسر از اعتبار</li><li>رتبه اعتباری بانکی موردنیاز</li><li>چک صیادی بنفش به نام خود متقاضی یا سفته الکترونیک</li></ul><p class="note"><b>خرید اعتباری چهارقسطه (BNPL):</b> امکان خرید با اعتبار ماهانه دیجی‌پی و پرداخت در ۴ قسط، تا سقف اعتبار تخصیص‌یافته به شما، در فروشگاه ما به‌صورت حضوری و آنلاین برقرار است. این خدمت صرفاً معرفی شده و جزو محاسبات وام نیست.</p>`,
-  azki:`<h3>طرح‌های ازکی‌وام</h3><table><thead><tr><th>بازپرداخت</th><th>اعتبار</th><th>کارمزد ارائه اعتبار</th></tr></thead><tbody><tr><td>۶ ماه</td><td>۳۰ تا ۳۰۰ میلیون</td><td>۸٪</td></tr><tr><td>۱۲ ماه</td><td>۳۰ تا ۱۰۰ میلیون</td><td>۱۵٪</td></tr><tr><td>۱۸ ماه</td><td>۳۰ تا ۳۰۰ میلیون</td><td>۱۹.۵٪</td></tr><tr><td>۲۴ ماه</td><td>۳۰ تا ۳۰۰ میلیون</td><td>۲۴٪</td></tr></tbody></table><p>سود بانکی: <b>۲۳٪ سالانه</b>؛ اختلاف خرید نقد و اقساط: <b>۴٪ کل فاکتور</b>؛ کارمزد اعتبار از خود اعتبار کسر می‌شود.</p><p>بانک‌های طرف قرارداد بسته به نوع طرح: بلو، ملت، تجارت و اقتصاد نوین.</p><h3>شرایط و مدارک</h3><ul><li>رتبه اعتباری بانکی موردنیاز</li><li>یک برگ چک صیادی بنفش به نام خود متقاضی</li><li>طرح ۱۲ ماهه و طرح ۶ ماهه تا سقف ۱۰۰ میلیون: مدارک اصلی فوق</li><li>طرح ۶ ماهه برای مبالغ بالای ۱۰۰ میلیون، و تمام طرح‌های ۱۸ و ۲۴ ماهه: مدارک شغلی نیز الزامی است.</li><li>کارمندان دولتی و خصوصی، بازنشستگان و مستمری‌بگیران: آخرین فیش حقوقی مهرشده</li><li>مشاغل آزاد: پرینت گردش سه‌ماهه حساب</li></ul><p class="note">در پیشنهاد پوشش کامل هزینه‌ها، مازاد اعتبار مؤثر نسبت به فاکتور حداکثر ۵٪ در نظر گرفته می‌شود؛ امکان استفاده از اعتبار بیشتر از قیمت واقعی کالا تابع ضوابط ارائه‌دهنده است.</p>`
+  gsm:`<h3>طرح‌های GSMPAY</h3><table><thead><tr><th>بانک</th><th>سقف اعتبار</th><th>بازپرداخت</th></tr></thead><tbody><tr><td>بلوبانک</td><td>۱۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۱۲ ماه</td></tr><tr><td>های‌بانک</td><td>۲۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۲۴ ماه</td></tr></tbody></table><p>سود سالانه بانکی: <b>۲۳٪</b>؛ کارمزد ارائه اعتبار: <b>۱۴.۵٪ اعتبار</b>؛ اختلاف خرید نقد و اقساط: <b>۳٪ کل فاکتور</b>.</p><h3>شرایط و مدارک</h3><ul><li>رتبه اعتباری بانکی موردنیاز</li><li>یک فقره چک ضمانت صیادی بنفش به نام خود متقاضی</li></ul><p class="note">کارمزد ارائه اعتبار به‌صورت نقدی و پیش از خرید پرداخت می‌شود؛ اعتبار بانکی به همان مبلغ اسمی باقی می‌ماند. مبلغ نقدی لازم برای پوشش اختلاف فاکتور و هزینه‌ها در نتیجه جداگانه نمایش داده می‌شود.</p>`,
+  digi:`<h3>طرح‌های ۱۲ ماهه دیجی‌پی</h3><table><thead><tr><th>اعتبار ثابت</th><th>بانک</th></tr></thead><tbody><tr><td>۷۰٬۰۰۰٬۰۰۰ تومان</td><td>صادرات یا ملت</td></tr><tr><td>۱۰۰٬۰۰۰٬۰۰۰ تومان</td><td>صادرات یا ملت</td></tr><tr><td>۱۵۰٬۰۰۰٬۰۰۰ تومان</td><td>ملت</td></tr><tr><td>۲۰۰٬۰۰۰٬۰۰۰ تومان</td><td>ملت</td></tr></tbody></table><p>سود بانکی: <b>۲۳٪ سالانه</b>؛ <b>هزینه تهیه اشتراک دیجی‌پی ۱۴.۵٪ اعتبار</b>؛ اختلاف خرید نقد و اقساط: <b>۹٪ کل فاکتور</b>.</p><h3>روش دریافت اشتراک و مدارک</h3><ul><li>هزینه اشتراک: پرداخت نقدی یا کسر از اعتبار</li><li>رتبه اعتباری بانکی موردنیاز</li><li>چک صیادی بنفش به نام خود متقاضی یا سفته الکترونیک</li></ul><p class="note"><b>خرید اعتباری چهارقسطه (BNPL):</b> امکان خرید با اعتبار ماهانه دیجی‌پی و پرداخت در ۴ قسط، تا سقف اعتبار تخصیص‌یافته به شما، در فروشگاه ما به‌صورت حضوری و آنلاین برقرار است. این خدمت صرفاً معرفی شده و جزو محاسبات وام نیست.</p>`,
+  azki:`<h3>طرح‌های ازکی‌وام</h3><table><thead><tr><th>بازپرداخت</th><th>اعتبار</th><th>کارمزد ارائه اعتبار</th></tr></thead><tbody><tr><td>۶ ماه</td><td>۳۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۸٪</td></tr><tr><td>۱۲ ماه</td><td>۳۰٬۰۰۰٬۰۰۰ تا ۱۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۱۵٪</td></tr><tr><td>۱۸ ماه</td><td>۳۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۱۹.۵٪</td></tr><tr><td>۲۴ ماه</td><td>۳۰٬۰۰۰٬۰۰۰ تا ۳۰۰٬۰۰۰٬۰۰۰ تومان</td><td>۲۴٪</td></tr></tbody></table><p>سود بانکی: <b>۲۳٪ سالانه</b>؛ اختلاف خرید نقد و اقساط: <b>۴٪ کل فاکتور</b>؛ کارمزد اعتبار از خود اعتبار کسر می‌شود.</p><p>بانک‌های طرف قرارداد بسته به نوع طرح: بلو، ملت، تجارت و اقتصاد نوین.</p><h3>شرایط و مدارک</h3><ul><li>رتبه اعتباری بانکی موردنیاز</li><li>یک برگ چک صیادی بنفش به نام خود متقاضی</li><li>طرح ۱۲ ماهه و طرح ۶ ماهه تا سقف ۱۰۰٬۰۰۰٬۰۰۰ تومان: مدارک اصلی فوق</li><li>طرح ۶ ماهه برای مبالغ بالای ۱۰۰٬۰۰۰٬۰۰۰ تومان، و تمام طرح‌های ۱۸ و ۲۴ ماهه: مدارک شغلی نیز الزامی است.</li><li>کارمندان دولتی و خصوصی، بازنشستگان و مستمری‌بگیران: آخرین فیش حقوقی مهرشده</li><li>مشاغل آزاد: پرینت گردش سه‌ماهه حساب</li></ul><p class="note">در پیشنهاد پوشش کامل هزینه‌ها، مازاد اعتبار مؤثر نسبت به فاکتور حداکثر ۵٪ در نظر گرفته می‌شود؛ امکان استفاده از اعتبار بیشتر از قیمت واقعی کالا تابع ضوابط ارائه‌دهنده است.</p>`
 };
 const INFO_TITLES={gsm:'GSMPAY | جی‌اس‌ام‌پی',digi:'DigiPay | دیجی‌پی',azki:'AzkiVam | ازکی‌وام'};
 let dialogOpener=null;
@@ -55,7 +55,7 @@ function getSettings(){
   let problem='';
   if(invoiceField.value.trim() && !(Number.isFinite(invoice)&&invoice>0&&invoice<=1e12))problem='قیمت فاکتور باید عددی مثبت و معتبر باشد.';
   else if(hasCredit && !(Number.isFinite(credit)&&credit>0&&credit<=1e12))problem='مبلغ اعتبار دلخواه باید عددی مثبت و معتبر باشد.';
-  else if(!(Number.isFinite(round)&&round>=.1&&round<=100))problem='گام گرد کردن باید بین ۰.۱ و ۱۰۰ میلیون تومان باشد.';
+  else if(!(Number.isFinite(round)&&round>=.1&&round<=100))problem='گام گرد کردن باید بین ۰.۱ و ۱۰۰٬۰۰۰٬۰۰۰ تومان باشد.';
   return {invoice,credit,round,months,digiMode,problem,empty:!invoiceField.value.trim()};
 }
 function paint(){
@@ -63,7 +63,7 @@ function paint(){
   error.classList.toggle('hidden',!state.problem);
   error.textContent=state.problem;
   if(state.problem){offers=[];filters.hidden=true;content.innerHTML='<div class="empty-state"><p>ابتدا اطلاعات واردشده را اصلاح کنید.</p></div>';subtitle.textContent='اطلاعات ورودی نیاز به اصلاح دارد.';$('results-count').classList.add('hidden');$('results-info').innerHTML='';return;}
-  if(state.empty){offers=[];filters.hidden=true;subtitle.textContent='برای شروع، قیمت فاکتور را وارد کنید.';$('results-count').classList.add('hidden');$('results-info').innerHTML='';content.innerHTML=`<div class="empty-state"><div class="empty-shape">٪</div><h3>آماده محاسبه هستیم!</h3><p>مبلغ فاکتور را در کادر بالا وارد کنید تا پیشنهادهای اعتباری هر سه شرکت با جزئیات اقساط نمایش داده شوند.</p><button class="link-button" type="button" id="example-button">مشاهده نمونه برای فاکتور ۱۲۰ میلیون تومانی ←</button></div>`;bindExample();return;}
+  if(state.empty){offers=[];filters.hidden=true;subtitle.textContent='برای شروع، قیمت فاکتور را وارد کنید.';$('results-count').classList.add('hidden');$('results-info').innerHTML='';content.innerHTML=`<div class="empty-state"><div class="empty-shape">٪</div><h3>آماده محاسبه هستیم!</h3><p>مبلغ فاکتور را در کادر بالا وارد کنید تا پیشنهادهای اعتباری هر سه شرکت با جزئیات اقساط نمایش داده شوند.</p><button class="link-button" type="button" id="example-button">مشاهده نمونه برای فاکتور ۱۲۰٬۰۰۰٬۰۰۰ تومانی ←</button></div>`;bindExample();return;}
   offers=state.credit===null?automaticOffers(state.invoice,{months:state.months,roundingMillions:state.round,digiMode:state.digiMode}):manualOffers(state.invoice,state.credit,{months:state.months,digiMode:state.digiMode});
   const termLabel=state.months==='all'?'تمام دوره‌های مجاز':`بازپرداخت ${faNum(state.months)} ماهه`;
   subtitle.textContent=state.credit===null?`پیشنهادهای خودکار برای فاکتور ${formatToman(state.invoice)} · ${termLabel}`:`طرح‌های سازگار با اعتبار دلخواه ${formatToman(state.credit)} · ${termLabel}`;
@@ -109,14 +109,14 @@ function cardHTML(o){
   const extraCash=upfront?'این کارمزد باید جداگانه و نقدی پیش از خرید پرداخت شود.':'کارمزد از مبلغ اعتبار کسر شده است.';
   return `<article class="result-card ${o.kind==='cover'?'cover':''}">
     <div class="result-top"><div class="result-top-right"><div class="plan-title">${escapeHTML(name)}</div><div class="plan-subtitle">${escapeHTML(o.scheme.bank)} · ${faNum(o.scheme.months)} ماه · ${paymentMethod}</div></div><span class="kind-tag">${titleKind}</span></div>
-    <div class="amount-block"><div><div class="amount-label">اعتبار بانکی</div><div class="amount-value">${formatMillion(o.credit,2)}</div><div class="amount-unit">تومان</div></div><div class="mini-meta"><div class="amount-label">سود سالانه</div><strong>${pRate(ANNUAL_BANK_RATE)}</strong></div></div>
+    <div class="amount-block"><div><div class="amount-label">اعتبار بانکی</div><div class="amount-value">${formatToman(o.credit)}</div></div><div class="mini-meta"><div class="amount-label">سود سالانه</div><strong>${pRate(ANNUAL_BANK_RATE)}</strong></div></div>
     <div class="row-values">
       <div class="data-row"><span>${o.scheme.company==='digi'?'هزینه تهیه اشتراک دیجی‌پی':'کارمزد ارائه اعتبار'} (${pRate(o.scheme.fee)})</span><strong class="negative">${formatToman(o.creditFee)}</strong></div>
       <div class="data-row"><span>اختلاف نقد و اقساط (${pRate(o.scheme.invoiceFee)} کل فاکتور)</span><strong class="negative">${formatToman(o.invoiceFee)}</strong></div>
       <div class="data-row"><span>${upfront?'اعتبار بانکی قابل استفاده':'اعتبار مؤثر پس از کسر هزینه‌ها'}</span><strong>${formatToman(o.effective)}</strong></div>
       ${hasSurplus?`<div class="data-row"><span>مازاد محاسباتی اعتبار</span><strong>${formatToman(o.surplus)}</strong></div>`:''}
     </div>
-    <div class="card-highlight"><div><label>وجه نقد موردنیاز${upfront?' (شامل کارمزد نقدی)':''}</label><strong class="${o.cashNeeded<1?'zero-cash':'cash'}">${formatMillion(o.cashNeeded,2)}</strong><span class="amount-unit">تومان</span></div><div><label>هر قسط ماهانه</label><strong class="monthly">${formatMillion(o.repayment.monthly,3)}</strong><span class="amount-unit">تومان</span></div></div>
+    <div class="card-highlight"><div><label>وجه نقد موردنیاز${upfront?' (شامل کارمزد نقدی)':''}</label><strong class="${o.cashNeeded<1?'zero-cash':'cash'}">${formatToman(o.cashNeeded)}</strong></div><div><label>هر قسط ماهانه</label><strong class="monthly">${formatToman(o.repayment.monthly)}</strong></div></div>
     ${caution?`<p class="card-warning">${escapeHTML(caution)}</p>`:''}
     <details class="detail-box"><summary>جزئیات کامل هزینه‌ها، اقساط و مدارک</summary><div class="details-inner">
       <div class="data-row"><span>اصل تسهیلات</span><strong>${formatToman(o.credit)}</strong></div>
@@ -137,8 +137,26 @@ function normalizeInputOnBlur(field){
     field.value=parsed.toLocaleString('en-US',{maximumFractionDigits:2});
   }
 }
+function liveGroup(field){
+  const before=field.value;
+  const caret=field.selectionStart??before.length;
+  const normalized=before.replace(/[۰-۹]/g,c=>String('۰۱۲۳۴۵۶۷۸۹'.indexOf(c)))
+    .replace(/[٠-٩]/g,c=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(c)));
+  const allowed=field===roundField?/[^0-9.]/g:/[^0-9]/g;
+  const cleaned=normalized.replace(allowed,'');
+  const dot=field===roundField?cleaned.indexOf('.'): -1;
+  const digits=dot>=0?cleaned.slice(0,dot):cleaned;
+  const rest=dot>=0?'.'+cleaned.slice(dot+1).replace(/\./g,''):'';
+  const formatted=digits.replace(/\B(?=(\d{3})+(?!\d))/g,',')+rest;
+  const prefix=normalized.slice(0,caret).replace(allowed,'');
+  const count=prefix.length;
+  let cursor=0,seen=0;
+  while(cursor<formatted.length && seen<count){if(/[0-9.]/.test(formatted[cursor]))seen++;cursor++}
+  field.value=formatted;
+  field.setSelectionRange(cursor,cursor);
+}
 [invoiceField,creditField,roundField].forEach(field=>{
-  field.addEventListener('input',paint);
+  field.addEventListener('input',()=>{liveGroup(field);paint();});
   field.addEventListener('blur',()=>{if(field.value.trim())normalizeInputOnBlur(field);});
 });
 [monthField,digiModeField].forEach(field=>field.addEventListener('change',paint));

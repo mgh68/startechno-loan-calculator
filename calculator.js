@@ -171,7 +171,7 @@ export function suggestMessages(invoice,credit,months) {
   const messages=[];
   if (credit && ![70,100,150,200].some(v=>credit===v*MILLION) && (months==='all'||Number(months)===12)){
     const options=[70,100,150,200].map(v=>v*MILLION).filter(v=>v<credit);
-    messages.push(`دیجی‌پی فقط اعتبارهای ثابت ۷۰، ۱۰۰، ۱۵۰ و ۲۰۰ میلیون تومان دارد${options.length?`؛ نزدیک‌ترین مبلغ پایین‌تر: ${formatToman(Math.max(...options))}`:''}.`);
+    messages.push(`دیجی‌پی فقط اعتبارهای ثابت ${[70,100,150,200].map(v=>formatToman(v*MILLION)).join('، ')} دارد${options.length?`؛ نزدیک‌ترین مبلغ پایین‌تر: ${formatToman(Math.max(...options))}`:''}.`);
   }
   if (credit && credit>invoice) messages.push('مبلغ اعتبار دستی از مبلغ فاکتور بیشتر است؛ در طرح‌های دارای مازاد، قابلیت استفاده از اعتبار اضافه باید با شرکت تأمین‌کننده تأیید شود.');
   return messages;
